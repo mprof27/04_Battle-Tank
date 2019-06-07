@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Engine.h"
 #include "TankTrack.h"
+#include "Engine.h"
 #include "BattleTank.h"
 
 
@@ -13,6 +13,10 @@ void UTankTrack::SetThrottle(float Throttle)
 	UE_LOG(LogTemp, Warning, TEXT("%s throttle: %f"), *Name, Throttle);
 
 	// TODO clamp actual throttle value so player can't over-drive
+	auto ForceApplied = GetForwardVector() * Throttle * TrackMaxDrivingForce;
+	auto ForceLocation = GetComponentLocation();
+	auto TankRoot = Cast<UPrimitiveComponent>(GetOwner()->GetRootComponent());
+	TankRoot->AddForceAtLocationLocal(ForceApplied, ForceLocation);
 }
 
 
