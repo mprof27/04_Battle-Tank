@@ -5,10 +5,12 @@
 #include "Tank.h"
 #include "BattleTank.h"
 
+
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
 }
+
 
 void ATankAIController::Tick(float DeltaTime)
 {
